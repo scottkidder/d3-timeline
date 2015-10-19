@@ -144,7 +144,7 @@
     };
 
     var appendLabel = function (gParent, yAxisMapping, index, hasLabel, datum) {
-      var fullItemHeight    = itemHeight + itemMargin;
+      var fullItemHeight    = (itemHeight + itemMargin) * .95;
       var rowsDown          = fullItemHeight + fullItemHeight * (yAxisMapping[index] || 1);
 
       gParent.append("text")
