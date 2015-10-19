@@ -302,6 +302,9 @@
           g.selectAll("svg").data(data).enter()
             .append("text")
             .attr("x", getXTextPos)
+            .attr('text-anchor', function(d) {
+              return d.labelAlign === 'right' ? 'end' : 'inherit';
+            })
             .attr("y", getStackTextPosition)
             .text(function(d) {
               return d.label;
@@ -402,7 +405,12 @@
       }
 
       function getXTextPos(d, i) {
-        return margin.left + (d.starting_time - beginning) * scaleFactor + 5;
+        if (!d.labelAlign || d.labelAlign === 'left') {
+          return margin.left + (d.starting_time - beginning) * scaleFactor + 5;
+        }
+        else {
+          return margin.left + (d.ending_time - beginning) * scaleFactor - 5;
+        }
       }
 
       function setHeight() {
